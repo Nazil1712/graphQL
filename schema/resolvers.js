@@ -25,12 +25,44 @@ export const resolvers = {
         }
     },
 
+
+    Mutation: { 
+        createUser : (parent, args) =>{
+            const newUser = args.input
+            const lastUserId = userList[userList.length - 1].id
+            newUser.id = lastUserId + 1
+            userList.push(newUser)
+            console.log(newUser)
+            return newUser
+        },
+
+
+        updateUser : (parent, args) =>{
+            const update = args.update
+            const index = userList.findIndex((user)=>user.id==update.id)
+            const oldUser = userList[index]
+            const updatedUser = {...oldUser, ...update}
+            console.log(updatedUser)
+            userList[index] = updatedUser
+            return updatedUser
+        },
+
+        
+        deleteUser: (parent, args) =>{
+            const id = args.id
+            _.remove(userList,(v,i,arr)=>v.id==id);
+            return null;
+        }
+    },
+
     // Resolvers for type User (Name of resolver object should be equal to the name of SchemaType)
     User: {
         favouriteMovies : ()=> {
             return _.filter(movieList,(v,i,list)=>{
                 return v.yearOfPublication >= 2010 && v.yearOfPublication <= 2020
             })
-        }
-    }
+        },
+    },
+
+    
 }

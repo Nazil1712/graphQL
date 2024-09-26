@@ -1,0 +1,64 @@
+# This file contains the query and practices that was done myself on apollo online server, while learning GraphQL
+
+query GetAllUsers {
+  users {
+    name
+    nationality
+    friends {
+      age
+      name
+      nationality
+    }
+  }
+}
+
+
+query getUser($userId: ID!) {
+  user(id: $userId) {
+    name
+    age
+    favouriteMovies {
+      name
+      yearOfPublication
+    }
+  }
+}
+
+
+query getAllMovies {
+  movies {
+    name
+    isInTheaters
+  }
+}
+
+
+query getMovie($name : String!) {
+  movie(name: $name) {
+    yearOfPublication
+  }
+}
+
+
+mutation addUser($input: createUserInput!) { 
+  createUser(input: $input) {
+    name
+    age
+    username
+  }
+}
+
+mutation($update : updateUserInput!) {
+  updateUser(update: $update) {
+    name
+    id
+    age
+  }
+}
+
+mutation($id : ID!) {
+  deleteUser(id: $id) {
+    name
+    age
+  }
+}
