@@ -7,11 +7,43 @@ export const typeDefs = gql`
         name: String!
         username: String!
         age: Int
-        nationality: String!
+        nationality: Nationality!
+        friends: [User!]
+        favouriteMovies: [Movie!]
+    }
 
+    type Movie { 
+        id: ID!
+        name: String!
+        yearOfPublication: Int!
+        isInTheaters: Boolean!
     }
 
     type Query {
         users : [User!]!
+        user(id: ID!): User!
+        movies : [Movie!]!
+        movie(name: String!): Movie!
     }
-`
+
+    enum Nationality {
+        BRITISH
+        MEXICAN
+        ITALIAN
+        CHINESE
+        PAKISTANI
+        CANADIAN
+        SPANISH
+        RUSSIAN
+        INDIAN
+        ARGENTINIAN
+        AUSTRALIAN
+        JAPANESE
+        EGYPTIAN
+        BRAZILIAN
+        GERMAN
+        MOROCCAN
+        AMERICAN
+        PORTUGUESE
+    }
+`;
