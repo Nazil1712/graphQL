@@ -1,5 +1,7 @@
 import { ApolloClient, InMemoryCache, ApolloProvider, useQuery, useMutation } from "@apollo/client";
 import DisplayData from "./DisplayData";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
 
@@ -13,6 +15,7 @@ function App() {
     <ApolloProvider client={client}>
       <div className="m-4">
         <DisplayData/>
+        <ToastContainer/>
       </div>
     </ApolloProvider>
   );

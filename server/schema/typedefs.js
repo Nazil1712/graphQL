@@ -19,14 +19,14 @@ export const typeDefs = gql`
         isInTheaters: Boolean!
     }
 
-    input createUserInput {
+    input CreateUserInput {
         name: String!
         username: String!
         age: Int = 18 
         nationality: Nationality!
     }
 
-    input updateUserInput {
+    input UpdateUserInput {
         id: ID!
         name: String
         username: String
@@ -34,10 +34,27 @@ export const typeDefs = gql`
         nationality: Nationality
     }
 
+
+    input CreateMovieInput {
+        name: String!
+        yearOfPublication: Int!
+        isInTheaters: Boolean!
+    }
+
+    input UpdateMovieInput {
+        id: ID!
+        name: String
+        yearOfPublication: Int
+        isInTheaters: Boolean
+    }
+
     type Mutation {
-        createUser(input: createUserInput!): User!
-        updateUser(update: updateUserInput!): User!
+        createUser(input: CreateUserInput!): User!
+        updateUser(update: UpdateUserInput!): User!
         deleteUser(id: ID!): User
+        createMovie(input: CreateMovieInput!): Movie!
+        updateMovie(update: UpdateMovieInput!): Movie!
+        deleteMovie(id: ID!): Movie
     }
 
     type Query {

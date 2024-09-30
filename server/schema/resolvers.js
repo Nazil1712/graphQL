@@ -52,6 +52,34 @@ export const resolvers = {
             const id = args.id
             _.remove(userList,(v,i,arr)=>v.id==id);
             return null;
+        },
+
+
+        createMovie: (parent, args) =>{
+            const newMovie = args.input
+            const lastMovieId = movieList[movieList.length - 1].id
+            newMovie.id = lastMovieId + 1
+            movieList.push(newMovie)
+            // console.log(newMovie)
+            return newMovie
+        },
+
+
+        updateMovie: (parent, args) =>{
+            const update = args.update
+            const index = movieList.findIndex((movie)=>movie.id==update.id)
+            const oldMovie = movieList[index]
+            const updatedMovie = {...oldMovie, ...update}
+            // console.log(updatedMovie)
+            movieList[index] = updatedMovie
+            return updatedMovie
+        },
+
+
+        deleteMovie: (parent, args)=>{
+            const id = args.id
+            _.remove(movieList,(movie,index,arr)=>movie.id==id)
+            return null
         }
     },
 
