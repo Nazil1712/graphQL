@@ -58,9 +58,9 @@ export const typeDefs = gql`
     }
 
     type Query {
-        users : [User!]!
+        users : UsersResult
         user(id: ID!): User!
-        movies : [Movie!]!
+        movies : MoviesResult
         movie(name: String!): Movie!
     }
 
@@ -84,4 +84,31 @@ export const typeDefs = gql`
         AMERICAN
         PORTUGUESE
     }
+
+
+    # Union for users
+    type UsersSuccessfullResult {
+        users: [User!]!
+    }
+
+    type UsersErrorResult {
+        message : String!
+    }
+
+    union UsersResult = UsersSuccessfullResult | UsersErrorResult
+
+
+
+    # Union for Movies
+    type MoviesSuccessResult {
+        movies : [Movie!]!
+    }
+
+    type MoviesErrorResult {
+        message : String!
+    }
+
+    union MoviesResult = MoviesSuccessResult | MoviesErrorResult
+
+
 `;
